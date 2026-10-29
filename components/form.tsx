@@ -114,12 +114,6 @@ export default function signUpForm() {
       >
         <Text>Sign Up</Text>
       </Pressable>
-      <Pressable
-        onPress={() => router.push("/confirmation")}
-        style={styles.signUpButton}
-      >
-        <Text>test page</Text>
-      </Pressable>
     </View>
   );
 }
