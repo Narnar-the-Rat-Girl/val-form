@@ -4,19 +4,24 @@ import { Control, Controller, FieldPath, useForm } from "react-hook-form";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { z } from "zod";
 
-const formSchema = z.object({
-  firstName: z
-    .string()
-    .min(2, "Please input first name")
-    .max(30, "too long, must be under 30 characters"),
-  lastName: z
-    .string()
-    .min(2, "Please input last name")
-    .max(30, "too long, must be under 30 characters"),
-  email: z.email().trim(),
-  password: z.string().min(8, "must be 8 characters"),
-  comfirmPass: z.string(),
-});
+const formSchema = z
+  .object({
+    firstName: z
+      .string()
+      .min(2, "Please input first name")
+      .max(30, "too long, must be under 30 characters"),
+    lastName: z
+      .string()
+      .min(2, "Please input last name")
+      .max(30, "too long, must be under 30 characters"),
+    email: z.email().trim(),
+    password: z.string().min(8, "must be 8 characters"),
+    comfirmPass: z.string(),
+  })
+  .refine((data) => data.password == data.comfirmPass, {
+    message: "passwords dont match",
+    path: ["comfirmPass"],
+  });
 
 type signUpFormType = z.infer<typeof formSchema>;
 
