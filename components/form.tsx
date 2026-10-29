@@ -33,13 +33,7 @@ type signUpFormProps = {
   secure?: boolean;
 };
 
-function FormInput({
-  control,
-  name,
-  placeholder,
-  email,
-  secure,
-}: signUpFormProps) {
+function FormInput({ control, name, email, secure }: signUpFormProps) {
   return (
     <View>
       <Controller
@@ -82,7 +76,6 @@ export default function signUpForm() {
 
   function onSubmit({ password, comfirmPass, ...safe }: signUpFormType) {
     console.log("submitted", safe);
-    const msg = JSON.stringify(safe, null, 2);
     router.push({
       pathname: "/confirmation",
       params: { firstName: safe.firstName },
